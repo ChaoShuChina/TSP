@@ -85,17 +85,6 @@ def minRoutes(routeLength):
 
 
 #交配,并且互换错误
-# routeBak = []
-# routeLenth = routeLength(route)
-# s = minRoutes(routeLenth)
-# routeBak = []
-# for o in route[s[0]]:
-#     routeBak.append(o)
-# i = random.randint(1,6)
-# j = random.randint(i,7)
-# print i,j
-# print s
-
 #
 
 def rectify(i,j,s):
@@ -127,33 +116,20 @@ def rectify(i,j,s):
 
 #迭代50次
 q = 0
-while q<100:
+while q<200:
     # routeLenth = []
     i = random.randint(1,6)
     j = random.randint(i,7)
     routeLenth = routeLength(route)
     s = minRoutes(routeLenth)
     min1 = [route[s[0]],route[s[1]]]
-    # print "min1:",min1
-    # b = random.randint(0,6)
-    # c = random.randint(0,7)
-    # if b == c:
-    #     c = b + 1
-    # route_max = [route[b],route[c]]
-    # for xm in route:
-    #     if xm == route[b] or xm == route[c]:
-    #         route_max.append(xm)
-    # print "max:",route_max
 
-    routemin_1 = [route[s[0]]]
-    # for x in route[s[0]]:
-    #     routemin_1.append(x)
-    routemin_2 = [route[s[1]]]
-    # for y in route[s[1]]:
-    #     routemin_2.append(y)
-    # print "roumin1,2:",routemin_1,routemin_2
-    # print "S=" ,s
-    # print "i,j=",i,j
+    routemin_1 = []
+    for x in route[s[0]]:
+        routemin_1.append(x)
+    routemin_2 = []
+    for y in route[s[1]]:
+        routemin_2.append(y)
     a = route[s[0]][i:j+1]
     route[s[0]][i:j+1] = route[s[1]][i:j+1]
     route[s[1]][i:j+1] = a
@@ -161,6 +137,12 @@ while q<100:
     for o in route[s[0]]:
          routeBak.append(o)
     rectify(i,j,s)
+    bianyi_1 = random.randint(0,7)
+    bianyi_2 = random.randint(1,4)
+    bianyi_3 = random.randint(5,7)
+    bianyi_nn = route[bianyi_1][bianyi_2]
+    route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+    route[bianyi_1][bianyi_3] = bianyi_nn
     while True:
         b = random.randint(1,(len(route)-2))
         c = random.randint(1,len(route)-2)
@@ -182,21 +164,14 @@ while q<100:
         else:
             mmlist.append(mm)
 
-    # xl = random.randint(1,4)
-    # xt = random.randint(5,7)
-    # mmt = routemin_1[0][xl]
-    # routemin_1[0][xl] = routemin_1[0][xt]
-    # routemin_1[0][xt] = mmt
-
-    route =mmlist + routemin_1 + routemin_2
-    # print "route = ",route
+    route =mmlist + [routemin_1] + [routemin_2]
     q = q+1
-    print "len:",len(route)
+
     print '本次最短路径为:',route[s[0]]
-    print "1,2",routemin_1,routemin_2
-    print "mmlist",mmlist
-    print "routemax",route_max
+    print '本次结果:',routeLenth
     print "route",route
+    print 's:',s
+print "s[0]",s[0]
 print '最终最短路径为:',route[s[0]]
-print '最后结果:',routeLenth
+print '最后结果:',routeLenth[s[0]]
 
