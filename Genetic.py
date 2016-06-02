@@ -18,9 +18,9 @@ def distanceArr():
     # print fileNumStr
     i = 0
     j = 0
-    distanceList = [[] for k in range(8)]
-    while i < 8:
-        while j < 8:
+    distanceList = [[] for k in range(30)]
+    while i < 30:
+        while j < 30:
             distanceList[i].append(int(distance(fileNumStr[i],fileNumStr[j])))
             j = j + 1
         i = i + 1
@@ -34,7 +34,7 @@ def  route():
     route = []
     i = 0
     while i < 8:
-        route.append([0]+random.sample((1,2,3,4,5,6,7),7)+[0])
+        route.append([0]+random.sample((1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29),29)+[0])
         i = i + 1
     return route
 route = route()
@@ -46,13 +46,13 @@ def routeLength(ro):
     for line in ro:
         i = 0
         sum = 0
-        while i<8:
+        while i<30:
             sum = sum + distanceList[line[i]][line[i+1]]
             i = i + 1
         routeLength.append(sum)
     # print routeLength
     return routeLength
-# routeLength = routeLength(route)
+# print "路径长度",routeLength(route)
 
 
 def minRoutes(routeLength):
@@ -116,13 +116,14 @@ def rectify(i,j,s):
 
 #迭代500次
 q = 0
-while q<500:
+while q<1000:
     # routeLenth = []
-    i = random.randint(1,6)
-    j = random.randint(i,7)
+    i = random.randint(1,28)
+    j = random.randint(i,29)
     routeLenth = routeLength(route)
+    # print "chadu",routeLenth
     s = minRoutes(routeLenth)
-    min1 = [route[s[0]],route[s[1]]]
+    # min1 = [route[s[0]],route[s[1]]]
 
     routemin_1 = []
     for x in route[s[0]]:
@@ -140,11 +141,23 @@ while q<500:
     bianyi = 0
     while bianyi<=2:
         bianyi_1 = random.randint(0,7)
-        bianyi_2 = random.randint(1,4)
-        bianyi_3 = random.randint(5,7)
+        bianyi_2 = random.randint(1,14)
+        bianyi_3 = random.randint(15,29)
         bianyi_nn = route[bianyi_1][bianyi_2]
         route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
         route[bianyi_1][bianyi_3] = bianyi_nn
+
+        bianyi_2 = random.randint(1,14)
+        bianyi_3 = random.randint(15,29)
+        bianyi_nn = route[bianyi_1][bianyi_2]
+        route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+        route[bianyi_1][bianyi_3] = bianyi_nn
+        #
+        # bianyi_2 = random.randint(1,14)
+        # bianyi_3 = random.randint(15,29)
+        # bianyi_nn = route[bianyi_1][bianyi_2]
+        # route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+        # route[bianyi_1][bianyi_3] = bianyi_nn
         bianyi = bianyi + 1
     while True:
         b = random.randint(1,(len(route)-2))
@@ -169,11 +182,11 @@ while q<500:
 
     route =mmlist + [routemin_1] + [routemin_2]
     q = q+1
-    print "几次迭代：",q
-    print '本次最短路径为:',route[s[0]]
-    print '本次结果:',routeLenth
-    print "route",route
-    print 's:',s
+    # print "几次迭代：",q
+    # print '本次最短路径为:',route[s[0]]
+    # print '本次结果:',routeLenth
+    # print "route",route
+    # print 's:',s
 print "s[0]",s[0]
 print '最终最短路径为:',route[s[0]]
 print '最后结果:',routeLenth[s[0]]
