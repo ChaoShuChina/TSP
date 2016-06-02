@@ -116,7 +116,7 @@ def rectify(i,j,s):
 
 #迭代500次
 q = 0
-while q<1000:
+while q<=150000:
     # routeLenth = []
     i = random.randint(1,28)
     j = random.randint(i,29)
@@ -139,7 +139,7 @@ while q<1000:
          routeBak.append(o)
     rectify(i,j,s)
     bianyi = 0
-    while bianyi<=2:
+    while bianyi<=3:
         bianyi_1 = random.randint(0,7)
         bianyi_2 = random.randint(1,14)
         bianyi_3 = random.randint(15,29)
@@ -152,7 +152,18 @@ while q<1000:
         bianyi_nn = route[bianyi_1][bianyi_2]
         route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
         route[bianyi_1][bianyi_3] = bianyi_nn
-        #
+
+        bianyi_2 = random.randint(1,14)
+        bianyi_3 = random.randint(15,29)
+        bianyi_nn = route[bianyi_1][bianyi_2]
+        route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+        route[bianyi_1][bianyi_3] = bianyi_nn
+
+        # bianyi_2 = random.randint(1,14)
+        # bianyi_3 = random.randint(15,29)
+        # bianyi_nn = route[bianyi_1][bianyi_2]
+        # route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+        # route[bianyi_1][bianyi_3] = bianyi_nn
         # bianyi_2 = random.randint(1,14)
         # bianyi_3 = random.randint(15,29)
         # bianyi_nn = route[bianyi_1][bianyi_2]
@@ -182,12 +193,16 @@ while q<1000:
 
     route =mmlist + [routemin_1] + [routemin_2]
     q = q+1
-    # print "几次迭代：",q
+    print "迭代次数：",q
     # print '本次最短路径为:',route[s[0]]
-    # print '本次结果:',routeLenth
+    print '本次结果:',routeLenth[s[0]]
+    if routeLenth[s[0]]<=550:
+        break
+
     # print "route",route
     # print 's:',s
 print "s[0]",s[0]
+print routeLenth
 print '最终最短路径为:',route[s[0]]
 print '最后结果:',routeLenth[s[0]]
 
