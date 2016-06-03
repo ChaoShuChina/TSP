@@ -59,15 +59,21 @@ def minRoutes(routeLength):
     s= []
     i = 0
     j = 0
+    k = 0
     while i<8:
         minRoute = min(routeLength)
-        if routeLength[i] == minRoute:
+        if routeLength[i] == minRoute and k == 0:
             s.append(i)
-            a = routeLength[i]
-            routeLength[i]=9999
+            # a = routeLength[i]
+            routeLength[i] = str(routeLength[i])
+            k = k + 1
+            i = i + 1
             # minRoute = min(routeLength)
             # minRoutes()
-            break
+            # break
+        elif routeLength[i] == minRoute and k>0:
+            routeLength[i] = str(routeLength[i])
+            i = i + 1
         else:i=i+1
     while j<8:
         minRoute = min(routeLength)
@@ -78,7 +84,10 @@ def minRoutes(routeLength):
             # minRoutes()
             break
         else:j=j+1
-    routeLength[i] = a
+    qq = 0
+    while qq<8:
+        routeLength[qq] = int(routeLength[qq])
+        qq = qq + 1
     return s
 # print minRoutes()
 
@@ -196,8 +205,8 @@ while q<=150000:
     print "迭代次数：",q
     # print '本次最短路径为:',route[s[0]]
     print '本次结果:',routeLenth[s[0]]
-    if routeLenth[s[0]]<=550:
-        break
+    if routeLenth[s[0]]<=500:
+         break
 
     # print "route",route
     # print 's:',s
