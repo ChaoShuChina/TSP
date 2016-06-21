@@ -3,6 +3,10 @@ __author__ = 'chao-shu'
 import re
 import random
 
+"""
+    遗传算法求最短路径
+"""
+
 #读取文件并计算各个城市之间的距离矩阵
 def distance(A,B):
     return ((float(A[0]) - float(B[0]))**2 + (float(A[1]) - float(B[1]))**2)**0.5
@@ -125,7 +129,7 @@ def rectify(i,j,s):
 
 #迭代500次
 q = 0
-while q<=150000:
+while q<=200000:
     # routeLenth = []
     i = random.randint(1,28)
     j = random.randint(i,29)
@@ -168,16 +172,16 @@ while q<=150000:
         route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
         route[bianyi_1][bianyi_3] = bianyi_nn
 
-        # bianyi_2 = random.randint(1,14)
-        # bianyi_3 = random.randint(15,29)
-        # bianyi_nn = route[bianyi_1][bianyi_2]
-        # route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
-        # route[bianyi_1][bianyi_3] = bianyi_nn
-        # bianyi_2 = random.randint(1,14)
-        # bianyi_3 = random.randint(15,29)
-        # bianyi_nn = route[bianyi_1][bianyi_2]
-        # route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
-        # route[bianyi_1][bianyi_3] = bianyi_nn
+        bianyi_2 = random.randint(1,14)
+        bianyi_3 = random.randint(15,29)
+        bianyi_nn = route[bianyi_1][bianyi_2]
+        route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+        route[bianyi_1][bianyi_3] = bianyi_nn
+        bianyi_2 = random.randint(1,14)
+        bianyi_3 = random.randint(15,29)
+        bianyi_nn = route[bianyi_1][bianyi_2]
+        route[bianyi_1][bianyi_2] = route[bianyi_1][bianyi_3]
+        route[bianyi_1][bianyi_3] = bianyi_nn
         bianyi = bianyi + 1
     while True:
         b = random.randint(1,(len(route)-2))
@@ -205,7 +209,7 @@ while q<=150000:
     print "迭代次数：",q
     # print '本次最短路径为:',route[s[0]]
     print '本次结果:',routeLenth[s[0]]
-    if routeLenth[s[0]]<=500:
+    if routeLenth[s[0]]<=435:
          break
 
     # print "route",route
