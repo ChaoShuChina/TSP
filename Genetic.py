@@ -6,7 +6,7 @@ import random
 """
     遗传算法求最短路径/实验更改
 """
-
+#这是修改
 #读取文件并计算各个城市之间的距离矩阵
 def distance(A,B):
     return ((float(A[0]) - float(B[0]))**2 + (float(A[1]) - float(B[1]))**2)**0.5
